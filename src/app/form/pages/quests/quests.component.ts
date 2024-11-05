@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-quests',
+  selector: 'form-quests',
   templateUrl: './quests.component.html',
   styleUrl: './quests.component.css'
 })

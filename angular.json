@@ -32,7 +32,12 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
               "src/styles.css"
@@ -91,18 +96,58 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
               "src/styles.css"
             ],
             "scripts": []
           }
+        },
+        "ionic-cordova-serve": {
+          "builder": "@ionic/angular-toolkit:cordova-serve",
+          "options": {
+            "cordovaBuildTarget": "tesis:ionic-cordova-build",
+            "devServerTarget": "tesis:serve"
+          },
+          "configurations": {
+            "production": {
+              "cordovaBuildTarget": "tesis:ionic-cordova-build:production",
+              "devServerTarget": "tesis:serve:production"
+            }
+          }
+        },
+        "ionic-cordova-build": {
+          /* "builder": "@ionic/angular-toolkit:cordova-build", */
+          "options": {
+            "browserTarget": "tesis:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tesis:build:production"
+            }
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    /* "schematicCollections": [
+      "@ionic/angular-toolkit"
+    ] */
+  },
+  "schematics": {
+   /*  "@ionic/angular-toolkit:component": {
+      "styleext": "scss"
+    },
+    "@ionic/angular-toolkit:page": {
+      "styleext": "scss"
+    } */
   }
 }

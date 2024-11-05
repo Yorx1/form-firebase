@@ -21,11 +21,11 @@ export class LoginComponent {
 
 
   public email: string = ''
-  public contrasenia: string = ''
+  public password: string = ''
 
 
   onSubmit() {
-    this.sessionService.login({ email: this.email, password: this.contrasenia })
+    this.sessionService.login({ email: this.email, password: this.password })
       .then(() => {
         this.router.navigate(['/form'])
       })

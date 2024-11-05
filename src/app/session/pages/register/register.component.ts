@@ -13,20 +13,20 @@ export class RegisterComponent {
   constructor(
     private sessionService: SessionService,
     private router: Router
-  ){}
+  ) { }
 
 
   public email: string = ''
-  public contrasenia: string = ''
-  public contrasenia2: string = ''
-  public isValid: boolean = true
+  public password: string = ''
+  public confirmPassword: string = ''
+  public isValid: boolean = false
 
 
-  validPass(contrasenia: string, contrasenia2: string) {
-    if (contrasenia != contrasenia2 || contrasenia.length < 6) {
-      this.isValid = false
+  validPass(password: string, confirmPassword: string) {
+    if (password != confirmPassword || password.length < 6) {
+      this.isValid = true
     } else {
-      this.sessionService.register({ email: this.email, password: this.contrasenia }).
+      this.sessionService.register({ email: this.email, password: this.password }).
         then(() => {
           this.router.navigate(['/session/login'])
         }).
@@ -37,7 +37,7 @@ export class RegisterComponent {
 
 
   onSubmit() {
-    this.validPass(this.contrasenia, this.contrasenia2)
+    this.validPass(this.password, this.confirmPassword)
   }
 
 }

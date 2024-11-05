@@ -2,15 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuestsComponent } from './pages/quests/quests.component';
 import { SessionModule } from '../session/session.module';
+import { HomeComponent } from './pages/home/home.component';
+import { SharedModule } from "../shared/shared.module";
+
+
+
 
 
 @NgModule({
-    declarations:[
-        QuestsComponent
+    declarations: [
+        QuestsComponent,
+        HomeComponent,
     ],
     imports: [
         CommonModule,
-        SessionModule
+        SessionModule,
+        SharedModule,
     ],
+    
+
 })
 export class FormModule { }

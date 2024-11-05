@@ -1,5 +1,5 @@
-<shared-navbar></shared-navbar>
-<section style="background-color: #09f;">
+<shared-particles></shared-particles>
+<!-- <section style="background-color: #09f;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -48,4 +48,49 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
+<!-- registration.component.html -->
+<form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <section>
+      <div class="register">
+        <h1>Completa el registro</h1>
+        
+        <!-- Personal Information -->
+        <div class="form-group">
+          <input  name="firstName" type="text" 
+            class="form-control mb-3" placeholder="Nombre" required>
+            
+          <input  name="lastName" type="text" 
+            class="form-control mb-3" placeholder="Apellido" required>
+            
+          <input  name="email" type="email" 
+            class="form-control mb-3" placeholder="Email" required>
+                  
+        <!-- Password Section -->
+        <div class="form-group">
+          <input [(ngModel)]="password" name="password" type="password" 
+            class="form-control mb-3" placeholder="Contraseña" required>
+            
+          <input name="confirmPassword" type="password" 
+            class="form-control mb-3" placeholder="Confirmar Contraseña" required>
+            
+          
+            <label *ngIf="isValid" class="form-label text-danger">
+              Passwords must match and be at least 6 characters long
+            </label>
+          
+        </div>
+  
+  
+        <!-- <button type="button" class="btn btn-lg btn-block btn-danger mb-3" 
+          (click)="signInWithGoogle()">
+          <i class="fab fa-google me-2"></i> Sign in with Google
+        </button> -->
+  
+        <p class="text-center">
+          Ya tiene una cuenta? ingrese <a routerLink="/session/login">aqui</a>
+        </p>
+      </div>
+    </div>
+    </section>
+  </form>

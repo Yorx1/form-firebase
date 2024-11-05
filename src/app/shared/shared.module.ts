@@ -1,20 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ParticlesComponent } from './components/particles/particles.component';
+import { NgxParticlesModule } from '@tsparticles/angular';
 
 
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    HeaderComponent,
+    NavbarComponent,
+    ParticlesComponent
   ],
   imports: [
     CommonModule, 
     RouterModule,
+    NgxParticlesModule
   ],
   exports:[
-    NavbarComponent
+    HeaderComponent,
+    NavbarComponent,
+    ParticlesComponent
+    
   ]
 })
 export class SharedModule { }
