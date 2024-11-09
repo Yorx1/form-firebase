@@ -39,27 +39,22 @@
     </div>
   </div>
 </section> -->
-<form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
   <section>
     <div class="login">
       <h1>Login</h1>
 
 
-      <input name="email" type="email" class="form-control mb-1" placeholder="Email Address" required>
-      <input name="password" type="password" class="form-control mb-1" placeholder="Password" required>
+      <input name="email" type="email" class="form-control mb-1" placeholder="Email Address" formControlName="email">
+      <input name="password" type="password" class="form-control mb-1" placeholder="Password" formControlName="password">
 
 
       <button class="btn btn-lg btn-block btn-primary mb-1" type="submit">
-        Login
+        Iniciar Sesión
       </button>
 
-      <!-- <button type="button" class="btn btn-lg btn-block btn-danger mb-3" 
-        (click)="signInWithGoogle()">
-        <i class="fab fa-google me-2"></i> Sign in with Google
-      </button> -->
-
       <p class="text-center">
-        ¿No tienes una cuenta? presiona <a href="/login">aqui</a>
+        ¿No tienes una cuenta? presiona <a routerLink="/auth/register">aqui</a>
       </p>
     </div>
   </section>

@@ -2,13 +2,13 @@ section {
     height: 100vh;
     display: flex;
     justify-content: center;
-    justify-items: flex-end;
+    align-items: center;
 
 }
 
 .login {
     padding: 15px;
-    min-height: 100vh;
+    min-height: 80vh;
     width: 350px;
     border-radius: 18px;
     position: absolute;

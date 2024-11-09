@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { QuestsComponent } from './form/pages/quests/quests.component';
-import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
-import { HomeComponent } from './form/pages/home/home.component';
+import { HomeComponent } from './form/pages/home/home-page.component';
+import { privateGuard, publicGuard } from './core/auth.guard';
 
 
 const routes: Routes = [
   {
-    path: 'session',
-    loadChildren : () => import('./session/session.module').then(m => m.SessionModule)
+    canActivateChild:[publicGuard()],
+    path: 'auth',
+    loadChildren : () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'form',
-    component: QuestsComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['/session/register']))
+    canActivateChild:[privateGuard()],
+    path:'dashboard',
+    loadChildren:() => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'home',
+    path: 'home-page',
     component:HomeComponent
   },
   {
     path:'**',
-    redirectTo: 'home'
+    redirectTo: 'home-page'
   }
 
 ];

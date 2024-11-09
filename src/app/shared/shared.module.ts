@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ParticlesComponent } from './components/particles/particles.component';
 import { NgxParticlesModule } from '@tsparticles/angular';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 
@@ -12,7 +13,8 @@ import { NgxParticlesModule } from '@tsparticles/angular';
   declarations: [
     HeaderComponent,
     NavbarComponent,
-    ParticlesComponent
+    ParticlesComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule, 
@@ -22,8 +24,8 @@ import { NgxParticlesModule } from '@tsparticles/angular';
   exports:[
     HeaderComponent,
     NavbarComponent,
-    ParticlesComponent
-    
+    ParticlesComponent,
+    SidebarComponent
   ]
 })
 export class SharedModule { }

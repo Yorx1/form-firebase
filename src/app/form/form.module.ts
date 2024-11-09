@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuestsComponent } from './pages/quests/quests.component';
-import { SessionModule } from '../session/session.module';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/home/home-page.component';
 import { SharedModule } from "../shared/shared.module";
-
-
-
 
 
 @NgModule({
@@ -16,10 +12,12 @@ import { SharedModule } from "../shared/shared.module";
     ],
     imports: [
         CommonModule,
-        SessionModule,
         SharedModule,
     ],
-    
+    exports: [
+        HomeComponent
+    ]
+
 
 })
 export class FormModule { }
