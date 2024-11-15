@@ -1,4 +1,4 @@
-
+<shared-particles></shared-particles>
 <div class="container-fluid gx-0 gy-0">
     <div class="row gy-0 gx-0">
         <shared-sidebar></shared-sidebar>
@@ -11,15 +11,15 @@
                   <div class="card-body">
                     <div class="mb-3">
                       <label for="name" class="form-label">Nombre:</label>
-                      <p id="name" class="form-control">{{user.name}}</p>
+                      <p id="name" class="form-control">{{user?.name}}</p>
                     </div>
                     <div class="mb-3">
                       <label for="lastName" class="form-label">Apellido:</label>
-                      <p id="lastName" class="form-control">{{user.lastName}}</p>
+                      <p id="lastName" class="form-control">{{user?.lastName}}</p>
                     </div>
                     <div class="mb-3">
                       <label for="email" class="form-label">Correo:</label>
-                      <p id="email" class="form-control">{{user.email}}</p>
+                      <p id="email" class="form-control">{{user?.email}}</p>
                     </div>
                   </div>
                   <div class="card-footer text-center">

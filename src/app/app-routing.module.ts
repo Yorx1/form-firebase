@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { QuestsComponent } from './form/pages/quests/quests.component';
-import { HomeComponent } from './form/pages/home/home-page.component';
+import { HomeComponent } from './shared/components/home/home-page.component';
 import { privateGuard, publicGuard } from './core/auth.guard';
 
 

@@ -1,8 +1,9 @@
-import { RouterModule, Routes } from '@angular/router';
+import { FormComponent } from './features/form/form.component';
+import { HomeComponent } from './features/home/home.component';
 import { NgModule } from '@angular/core';
 import { ProfileComponent } from './features/profile/profile.component';
-import { HomeComponent } from './features/home/home.component';
-import { DashboardComponent } from './dashboard.component';
+import { RecordComponent } from './record/record.component';
+import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
@@ -12,6 +13,18 @@ export const routes: Routes = [
     {
         path: 'profile',
         component: ProfileComponent
+    },
+    {
+        path: 'form',
+        component: FormComponent
+    },
+    {
+        path: 'record',
+        component: RecordComponent
+    },
+    {
+        path: '**',
+        redirectTo: 'home'
     }
 
 ]

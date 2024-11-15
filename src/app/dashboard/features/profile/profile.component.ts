@@ -1,6 +1,9 @@
+import { docData } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../../services/dashboard.service';
+import { User } from '../../../interfaces/user';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'dashboard-profile',
@@ -9,7 +12,7 @@ import { DashboardService } from '../../services/dashboard.service';
 })
 export class ProfileComponent implements OnInit {
 
-  public user = {
+  public user?: User = {
     name: "",
     lastName: "",
     email: ""
@@ -21,19 +24,21 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const mail = this.dashboardService.getUserEmail()!
-    console.log(mail);
-    this.dashboardService.getUser(mail)
-      .subscribe((data) => {
-        data.map(data => {
-          if (mail === data["email"]) {
-            this.user = data;
-          }
-          return;
-        }
-        )
-      }
-      )
+
+    this.dashboardService.getUser()
+    .subscribe((data) => {
+      this.user = data
+    });
+    
+    
+    // (data) => {
+    //   data.map(({ userId }, i) => {
+    //     userId == this.auth.currentUser?.uid ? (data[i]) : ""
+    //   })
+
+
+
   }
 
 }
+

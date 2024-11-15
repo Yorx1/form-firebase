@@ -1,8 +1,20 @@
-svg{
-  height: 30px ;
+svg {
+  height: 30px;
   width: 30px;
   margin-bottom: 3px;
-} 
+}
 
+hr {
+  color: white;
+  z-index: 1000000;
+}
 
+li:hover {
+  span {
+    color: #09f;
+  }
 
+  svg {
+    fill: #09f;
+  }
+}

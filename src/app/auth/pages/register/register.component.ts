@@ -1,12 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { isRequired, hasEmailError } from '../../utils/validators';
 import { toast } from 'ngx-sonner';
-
-
-
+import { Auth } from '@angular/fire/auth';
 
 interface formRegister {
   name: FormControl<string | null>
@@ -26,7 +24,8 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private formBuilder:FormBuilder
+    private formBuilder: FormBuilder,
+    private auth:Auth
   ) { }
 
   isRequired(field: 'name' | 'password' | 'email') {
@@ -49,17 +48,19 @@ export class RegisterComponent {
     try {
 
       const { name, lastName, email, password } = this.form.value
+      
+
 
       if (!name || !email || !password) return
 
-      await this.authService.addUser({ name, lastName, email })
+      await this.authService.register({ email, password });
+      await this.authService.addUser({ name, lastName, email  })
 
       toast.message("Usuario creado correctamente")
       this.router.navigateByUrl("/auth/login")
 
-      await this.authService.register({ email, password });
-
     } catch (error) {
+      console.log(error);
       toast.error("Ha ocurrido un error");
     }
 

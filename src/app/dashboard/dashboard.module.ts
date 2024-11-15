@@ -5,6 +5,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './features/profile/profile.component';
 import { HomeComponent } from './features/home/home.component';
+import { FormComponent } from './features/form/form.component';
+import { RecordComponent } from './record/record.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,12 +15,15 @@ import { HomeComponent } from './features/home/home.component';
   declarations: [
     DashboardComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    FormComponent,
+    RecordComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
-  ]
+    FormsModule,
+    SharedModule, 
+   ]
 })
 export class DashboardModule { }

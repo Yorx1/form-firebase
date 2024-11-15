@@ -1,0 +1,27 @@
+<shared-particles class="particles-background"></shared-particles>
+<form (submit)="onSubmit()" id="evaluationForm" class="container py-5">
+  <h2 class="text-center mb-4 z-3">Evaluación de Salud Mental</h2>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+
+    <div class="col" *ngFor="let question of questions">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <label [for]="question.id" class="form-label">{{ question.label }}</label>
+          <select [id]="question.id" [name]="question.id" class="form-select" required>
+            <option value="">None</option>
+            <option value='0'>No</option>
+            <option value='1'>Si</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="text-center mt-5">
+    <p *ngIf="">Rellene todos los campos con "Si" O "No"</p>
+    <button type="submit" class="btn btn-primary btn-lg px-5">Enviar Evaluación</button>
+  </div>
+</form>

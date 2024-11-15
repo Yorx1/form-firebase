@@ -1,4 +1,4 @@
-import { addDoc, collection,Firestore } from '@angular/fire/firestore';
+import { addDoc, collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Session } from '../../interfaces/session';
@@ -15,8 +15,8 @@ export class AuthService {
     ) { }
 
     async addUser(user: User) {
-        const userRef = collection(this.firestore, 'users')
-        await addDoc(userRef, user)
+        const userRef = doc(this.firestore, 'users', this.auth.currentUser!.uid)
+        await setDoc(userRef, { ...user, record: [] })
     }
 
     register({ email, password }: Session) {

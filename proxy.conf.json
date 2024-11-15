@@ -1,0 +1,8 @@
+{
+    "/api": {
+        "target": "https://oscarcz-tesis-2.hf.space/predict/",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

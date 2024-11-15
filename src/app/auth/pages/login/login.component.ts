@@ -50,7 +50,7 @@ export class LoginComponent {
 
       await this.authService.signIn({ email, password });
 
-      this.router.navigateByUrl("/dashboard")
+      this.router.navigateByUrl("/dashboard/home")
     } catch (error) {
       toast.error("Parece que la cuenta no existe");
     }
