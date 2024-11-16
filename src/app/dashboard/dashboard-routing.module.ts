@@ -2,8 +2,9 @@ import { FormComponent } from './features/form/form.component';
 import { HomeComponent } from './features/home/home.component';
 import { NgModule } from '@angular/core';
 import { ProfileComponent } from './features/profile/profile.component';
-import { RecordComponent } from './record/record.component';
+import { RecordComponent } from './features/record/record.component';
 import { RouterModule, Routes } from '@angular/router';
+import { SettingsComponent } from './features/settings/settings.component';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,10 @@ export const routes: Routes = [
         component: FormComponent
     },
     {
+        path : 'settings',
+        component:SettingsComponent
+    },
+    {
         path: 'record',
         component: RecordComponent
     },
@@ -26,7 +31,6 @@ export const routes: Routes = [
         path: '**',
         redirectTo: 'home'
     }
-
 ]
 
 

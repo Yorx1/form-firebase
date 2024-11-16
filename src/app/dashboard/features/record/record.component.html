@@ -1,0 +1,20 @@
+<div class="container-fluid gx-0 gy-0">
+    <div class="row gy-0 gx-0">
+        <shared-sidebar></shared-sidebar>
+        <div class="col-12 col-sm-8 col-md-9 col-lg-9 offset-sm-4 offset-md-3 offset-lg-2">
+
+            <ul *ngIf="showRecord.length > 0;else dataMissing" class="list-group mt-2">
+                <li *ngFor="let recordItem of showRecord" class="list-group-item list-group-item-info m-2">
+                    {{recordItem}}
+                </li>
+            </ul>
+
+            <ng-template #dataMissing>
+                <div class="d-flex justify-content-center align-items-center bg-secondary-subtle"
+                    style="height: 100px;">
+                    <span class="text-center">No se encontraron registros</span>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

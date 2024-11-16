@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { addDoc, collection, collectionData, doc, docData, DocumentReference, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
-import { map, Observable } from 'rxjs';
+import { arrayUnion, doc, docData, Firestore, updateDoc } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { User } from '../../interfaces/user';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
 
@@ -9,31 +9,28 @@ import { HttpClient, HttpHeaders, } from '@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class DashboardService {
 
-    results:string[] = []
-
     constructor(
         private firestore: Firestore,
         private auth: Auth,
         private http: HttpClient
-    ) {}
+    ) { }
 
 
-    public apiUrl: string = 'https://oscarcz-tesis-2.hf.space/predict/'
+    private apiUrl: string = 'https://oscarcz-tesis-2.hf.space/predict/'
 
 
-    async addInRecord() {
+    async addInRecord(result: string) {
         const userRef = doc(this.firestore, "users", this.auth.currentUser!.uid)
-        if(this.results.length >= 10){
-            this.results = []
-        }
-        await updateDoc(userRef,{
-            record:this.results
+        let now = new Date();
+        await updateDoc(userRef, {
+            record: arrayUnion(`${result}-${now.toLocaleDateString('es-ES')}`)
         })
+
     }
 
-    getRecords(): Observable<any> {
+    getRecords(): Observable<User> {
         const userRef = doc(this.firestore, 'users', this.auth.currentUser!.uid)
-        return docData(userRef, { idField: "id" })
+        return docData(userRef, { idField: "id" }) as unknown as Observable<User>
     }
 
 
@@ -49,8 +46,6 @@ export class DashboardService {
         const usersRef = doc(this.firestore, 'users', this.auth.currentUser!.uid);
         return docData(usersRef, { idField: "id" }) as unknown as Observable<User>
     }
-
-
 
 
 

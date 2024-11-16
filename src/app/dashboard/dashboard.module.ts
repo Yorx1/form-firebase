@@ -6,8 +6,9 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './features/profile/profile.component';
 import { HomeComponent } from './features/home/home.component';
 import { FormComponent } from './features/form/form.component';
-import { RecordComponent } from './record/record.component';
+import { RecordComponent } from './features/record/record.component';
 import { FormsModule } from '@angular/forms';
+import { SettingsComponent } from './features/settings/settings.component';
 
 
 
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     ProfileComponent,
     HomeComponent,
     FormComponent,
-    RecordComponent
+    RecordComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,

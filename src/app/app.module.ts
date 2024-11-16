@@ -2,7 +2,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { provideRouter, RouterModule, withViewTransitions } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { NgxSonnerToaster } from 'ngx-sonner';
 import { provideHttpClient } from '@angular/common/http';
+import { routes } from './auth/auth-routing.module';
 
 
 
@@ -31,7 +32,8 @@ import { provideHttpClient } from '@angular/common/http';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideHttpClient()
+    provideHttpClient(),
+    provideRouter(routes,withViewTransitions())
   ],
   bootstrap: [AppComponent],
 })

@@ -77,7 +77,7 @@ export class ParticlesComponent implements OnInit {
         },
         limit: {
           mode: "delete",
-          value: 50
+          value: 40
         },
         value: 30
       },

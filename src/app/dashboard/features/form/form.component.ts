@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { toast } from 'ngx-sonner';
 
@@ -15,21 +15,22 @@ type Data = {
 })
 export class FormComponent implements OnInit {
 
+  @Input()
   public messages: string[] = []
 
   private interpretation: { [key: string]: string } = {
-    0: "trastorno Depresivo Mayor",
-    1: "trastorno del espectro autista",
-    2: "transtorno de soledad",
-    3: "transtorno de bipolaridad",
-    4: "transtorno de ansiedad",
-    5: "trastorno de estrés postraumático",
-    6: "trastorno del sueño",
-    7: "trastorno de depresión psicótica",
-    8: "trastorno alimenticio",
-    9: "trastorno por déficit de atención e hiperactividad",
-    10: "trastorno obsesivo-compulsivo",
-    11: "trastorno depresivo persistente"
+    0: 'trastorno Depresivo Mayor',
+    1: 'trastorno del espectro autista',
+    2: 'transtorno de soledad',
+    3: 'transtorno de bipolaridad',
+    4: 'transtorno de ansiedad',
+    5: 'trastorno de estrés postraumático',
+    6: 'trastorno del sueño',
+    7: 'trastorno de depresión psicótica',
+    8: 'trastorno alimenticio',
+    9: 'trastorno por déficit de atención e hiperactividad',
+    10: 'trastorno obsesivo-compulsivo',
+    11: 'trastorno depresivo persistente'
   }
 
 
@@ -70,82 +71,56 @@ export class FormComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.onSubmit()
+
   }
 
   onSubmit() {
-    const form = document.getElementById("evaluationForm") as HTMLFormElement
+    const form = document.getElementById('evaluationForm') as HTMLFormElement
     const formData = new FormData(form);
-    let cont = 0
     let data: { [key: string]: number } = {}
+    const validArray: string[] = []
     formData.forEach((value, key) => {
       data[key] = parseInt(value.toString())
-      if(value === ""){
-       cont += 1
-      }
+      validArray.push(value.toString())
     });
 
-    if (cont > 0){
-      toast.message("Rellene todos los campos con \"Si\"  o \"No\"")
-      return
+    console.log(data);
+    console.log(validArray);
+    
+
+    if (validArray.every(value => value === "0")) {
+      toast.message('Usted no tiene ninguna condición relevante.')
+    } else if (validArray.includes('')){
+      toast.message('Rellene los campos con \"Si\" o \"No\"')
     }
 
-
-
-    
-
-   
-    
-    
 
     this.dashboardService.postData(data)
       .subscribe(
         (data: Data) => {
-          let sum = 0
-          data.prediction.forEach(value => {
-            sum += value
-          })
-          if (sum === 0) {
-            toast.message("Usted no tiene ninguna condición relevante.")
-          }
-
 
           data.prediction.map((value, index) => {
-            value === 1 ? this.messages.push(this.interpretation[index]) : ""
+            value === 1 ? this.messages.push(this.interpretation[index]) : ''
           })
 
-
+          const limitedMessages = this.messages.slice(0, 2);
+          this.result(limitedMessages)
           this.dashboardService.getRecords().subscribe((data) => {
             console.log(data);
 
           })
-
-
-          const limitedMessages = this.messages.slice(0, 3);
-
-
-          this.result(limitedMessages)
-
         })
   }
 
 
-  async result(limitedMessages: string[]) {
-    let responseMessage;
-    if (limitedMessages.length === 1) {
-      responseMessage = `Cuidado, usted puede tener ${limitedMessages[0]}.`
-      this.dashboardService.results.push(limitedMessages[0])
-    } else if (limitedMessages.length === 2) {
-      responseMessage = `Cuidado, usted puede tener ${limitedMessages[0]} y ${limitedMessages[1]}.`;
-      this.dashboardService.results.push(limitedMessages[0], limitedMessages[1]);
-    } else if (limitedMessages.length === 3) {
-      responseMessage = `Cuidado, usted puede tener ${limitedMessages[0]}, ${limitedMessages[1]} y ${limitedMessages[2]}.`;
-      this.dashboardService.results.push(limitedMessages[0], limitedMessages[1], limitedMessages[2]);
-    } else {
-      responseMessage = 'No se encontraron condiciones relevantes.';
-    }
 
-    await this.dashboardService.addInRecord()
+  async result(limitedMessages: string[]) {
+    if (limitedMessages.length === 1) {
+      await this.dashboardService.addInRecord(limitedMessages[0])
+    } else if (limitedMessages.length === 2) {
+      await this.dashboardService.addInRecord(limitedMessages[0])
+      await this.dashboardService.addInRecord(limitedMessages[1])
+    }
 
   }
 }
