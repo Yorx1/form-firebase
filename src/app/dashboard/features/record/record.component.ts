@@ -1,5 +1,11 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
+
+type record = [{
+  disorder: string
+  date: string
+}]
+
 
 @Component({
   selector: 'app-record',
@@ -9,7 +15,10 @@ import { DashboardService } from '../../services/dashboard.service';
 export class RecordComponent implements OnInit {
 
 
-  showRecord: string[] = []
+  showRecord: record = [{
+    disorder:'',
+    date:''
+  }]
 
 
   constructor(private dashboardService: DashboardService) { }
@@ -18,11 +27,8 @@ export class RecordComponent implements OnInit {
   ngOnInit(): void {
     this.dashboardService.getRecords().subscribe(
       (value) => {
-        value.record?.forEach((value) => {
-          this.showRecord.push(value)
-        });
+        this.showRecord = value.record!
       }
     )
-
   }
 }

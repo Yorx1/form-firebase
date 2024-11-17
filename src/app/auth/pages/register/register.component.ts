@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { isRequired, hasEmailError } from '../../utils/validators';
 import { toast } from 'ngx-sonner';
-import { Auth } from '@angular/fire/auth';
 
 interface formRegister {
   name: FormControl<string | null>
   lastName: FormControl<string | null>
+  birthDate: FormControl<string | null>
   email: FormControl<string | null>,
   password: FormControl<string | null>
+  description: FormControl<string | null>
 }
 
 
@@ -25,10 +26,9 @@ export class RegisterComponent {
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private auth:Auth
   ) { }
 
-  isRequired(field: 'name' | 'password' | 'email') {
+  isRequired(field: 'name' | 'password' | 'email' | 'birthDate') {
     return isRequired(field, this.form)
   }
 
@@ -38,23 +38,42 @@ export class RegisterComponent {
   form = this.formBuilder.group<formRegister>({
     name: this.formBuilder.control('', Validators.required),
     lastName: this.formBuilder.control(''),
+    birthDate: this.formBuilder.control('', Validators.required),
     email: this.formBuilder.control('', [Validators.required, Validators.email]),
-    password: this.formBuilder.control('', Validators.required)
+    password: this.formBuilder.control('', Validators.required),
+    description: this.formBuilder.control('', Validators.required)
   })
+
+  calculateAge(): string | null {
+    const birthDate = this.form.get('birthDate')?.value;
+    if (!birthDate) return null;
+
+    const today = new Date();
+    const birthDateObj = new Date(birthDate);
+    let age = today.getFullYear() - birthDateObj.getFullYear();
+    const monthDiff = today.getMonth() - birthDateObj.getMonth();
+
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
+      age--;
+    }
+    return age.toString();
+  }
 
 
   async onSubmit() {
     if (this.form.invalid) return;
     try {
 
-      const { name, lastName, email, password } = this.form.value
-      
+      let { name, lastName, email, password, birthDate , description } = this.form.value
 
+      birthDate = this.calculateAge()
 
-      if (!name || !email || !password) return
+      if (!name || !email || !password || !birthDate) return
 
+     
       await this.authService.register({ email, password });
-      await this.authService.addUser({ name, lastName, email  })
+      await this.authService.addUser({ name, lastName, email, birthDate , description})
 
       toast.message("Usuario creado correctamente")
       this.router.navigateByUrl("/auth/login")
@@ -65,29 +84,5 @@ export class RegisterComponent {
     }
 
   }
-  // public email: string = '';
-  // public password: string = '';
-  // public confirmPassword: string = '';
-  // public isValid: boolean = false;
-  // public regex:RegExp = /^[0-9A-Za-z]+$/;
-
-
-  // validPass(password: string, confirmPassword: string) {
-  //   if (password != confirmPassword || !this.regex) {
-  //     this.isValid = true
-  //   } else {
-  //     this.sessionService.register({ email: this.email, password: this.password }).
-  //       then(() => {
-  //         this.router.navigate(['/session/login'])
-  //       }).
-  //       catch(error => console.log(error))
-  //   }
-  // }
-
-
-
-  // onSubmit() {
-  //   this.validPass(this.password, this.confirmPassword)
-  // }
 
 }

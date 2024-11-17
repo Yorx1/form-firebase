@@ -1,34 +1,36 @@
-<shared-particles></shared-particles>
 <div class="container-fluid gx-0 gy-0">
-    <div class="row gy-0 gx-0">
-        <shared-sidebar></shared-sidebar>
-        <div class="col-12 col-sm-8 col-md-9 col-lg-10 offset-sm-4 offset-md-3 offset-lg-2">
-            <div class="container mt-5">
-                <div class="card" style="max-width: 500px; margin: auto;">
-                  <div class="card-header text-center">
-                    <h3>Perfil de Usuario</h3>
-                  </div>
-                  <div class="card-body">
-                    <div class="mb-3">
-                      <label for="name" class="form-label">Nombre:</label>
-                      <p id="name" class="form-control">{{user?.name}}</p>
-                    </div>
-                    <div class="mb-3">
-                      <label for="lastName" class="form-label">Apellido:</label>
-                      <p id="lastName" class="form-control">{{user?.lastName}}</p>
-                    </div>
-                    <div class="mb-3">
-                      <label for="email" class="form-label">Correo:</label>
-                      <p id="email" class="form-control">{{user?.email}}</p>
-                    </div>
-                  </div>
-                  <div class="card-footer text-center">
-                    <button class="btn btn-primary">Editar Perfil</button>
-                  </div>
-                </div>
-              </div>
+  <div class="row gy-0 gx-0">
+    <shared-sidebar></shared-sidebar>
+    <div class="col-12 col-sm-8 col-md-9 col-lg-10 offset-sm-4 offset-md-3 offset-lg-2 position-relative">
+      <div class="container mt-5">
+        <div class="card" style="max-width: 500px; margin: auto;">
+          <div class="card-header text-center">
+            <h3>Perfil de Usuario</h3>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre:</label>
+              <p id="name" class="form-control">{{user?.name}}</p>
+            </div>
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Apellido:</label>
+              <p id="lastName" class="form-control">{{user?.lastName}}</p>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo:</label>
+              <p id="email" class="form-control">{{user?.email}}</p>
+            </div>
+            <div class="mb-3">
+              <label for="age" class="form-label">Edad:</label>
+              <p id="age" class="form-control">{{user?.birthDate}}</p>
+            </div>
+            <div class="form-floating">
+              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" disabled></textarea>
+              <label for="floatingTextarea2">{{user?.description}}</label>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-
-

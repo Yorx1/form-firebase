@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Session } from '../../interfaces/session';
@@ -26,6 +26,7 @@ export class AuthService {
     signIn({ email, password }: Session) {
         return signInWithEmailAndPassword(this.auth, email, password)
     }
+
 
 
 

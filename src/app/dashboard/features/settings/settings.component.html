@@ -1,8 +1,11 @@
 <div class="container-fluid gx-0 gy-0">
     <div class="row gy-0 gx-0">
         <shared-sidebar></shared-sidebar>
-        <div class="col-12 col-sm-8 col-md-9 col-lg-9 offset-sm-4 offset-md-3 offset-lg-2">
-        <h1>settings</h1>
+        <div class="col-12 col-sm-8 col-md-9 col-lg-9 offset-sm-4 offset-md-3 offset-lg-2 position-relative">
+            <div class="d-flex flex-column w-25 mt-2">
+                <button (click)="onSubmitEdit()" class="btn btn-primary">Editar Usuario</button>
+                <button (click)="onSubmitDelete()" class="btn btn-danger mt-2">Eliminar Usuario</button>
+            </div>
         </div>
     </div>
 </div>

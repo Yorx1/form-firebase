@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { toast } from 'ngx-sonner';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 type Data = {
@@ -18,7 +20,7 @@ export class FormComponent implements OnInit {
   @Input()
   public messages: string[] = []
 
-  private interpretation: { [key: string]: string } = {
+  private interpretation: { [key: number]: string } = {
     0: 'trastorno Depresivo Mayor',
     1: 'trastorno del espectro autista',
     2: 'transtorno de soledad',
@@ -66,7 +68,8 @@ export class FormComponent implements OnInit {
 
 
   constructor(
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private router: Router
   ) {
 
   }
@@ -86,12 +89,31 @@ export class FormComponent implements OnInit {
 
     console.log(data);
     console.log(validArray);
-    
+
 
     if (validArray.every(value => value === "0")) {
-      toast.message('Usted no tiene ninguna condición relevante.')
-    } else if (validArray.includes('')){
-      toast.message('Rellene los campos con \"Si\" o \"No\"')
+      Swal.fire({
+        text: "Usted no tiene ninguna condición relevante",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonColor: "#09f",
+        cancelButtonColor: "#FF5555",
+        confirmButtonText: "Intentar otra vez",
+        cancelButtonText: "Volver al inicio"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload()
+        } else {
+          this.router.navigateByUrl('/dashboard/home')
+        }
+      });
+    } else if (validArray.includes('')) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Rellene todos los campos con \"Si\" o \"No\"",
+      });
+      return
     }
 
 
@@ -117,9 +139,41 @@ export class FormComponent implements OnInit {
   async result(limitedMessages: string[]) {
     if (limitedMessages.length === 1) {
       await this.dashboardService.addInRecord(limitedMessages[0])
+      Swal.fire({
+        title : "Cuidado",
+        text: `Usted puede tener ${limitedMessages[0]}.`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#09f",
+        cancelButtonColor: "#FF5555",
+        confirmButtonText: "Intentar otra vez",
+        cancelButtonText: "Volver al inicio"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload()
+        } else {
+          this.router.navigateByUrl('/dashboard/home')
+        }
+      });
     } else if (limitedMessages.length === 2) {
       await this.dashboardService.addInRecord(limitedMessages[0])
       await this.dashboardService.addInRecord(limitedMessages[1])
+      Swal.fire({
+        title : "Cuidado",
+        text: `Usted puede tener ${limitedMessages[0]} y ${limitedMessages[1]}.`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#09f",
+        cancelButtonColor: "#FF5555",
+        confirmButtonText: "Intentar otra vez",
+        cancelButtonText: "Volver al inicio"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload()
+        } else {
+          this.router.navigateByUrl('/dashboard/home')
+        }
+      });
     }
 
   }

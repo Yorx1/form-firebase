@@ -62,7 +62,7 @@ export class ParticlesComponent implements OnInit {
         enable: true
       },
       move: {
-        direction: "none",
+        direction: "bottom",
         enable: true,
         outModes: {
           default: "out"

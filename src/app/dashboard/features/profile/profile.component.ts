@@ -13,9 +13,11 @@ import { map, tap } from 'rxjs';
 export class ProfileComponent implements OnInit {
 
   public user?: User = {
-    name: "",
-    lastName: "",
-    email: ""
+    name: '',
+    lastName: '',
+    email: '',
+    birthDate: '',
+    description: ''
   }
 
   constructor(
@@ -26,17 +28,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.dashboardService.getUser()
-    .subscribe((data) => {
-      this.user = data
-    });
-    
-    
-    // (data) => {
-    //   data.map(({ userId }, i) => {
-    //     userId == this.auth.currentUser?.uid ? (data[i]) : ""
-    //   })
-
-
+      .subscribe((data) => {
+        this.user = data
+      })
 
   }
 
