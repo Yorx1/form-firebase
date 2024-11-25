@@ -1,7 +1,7 @@
 # Requisitos Previos
 
-**Node.js**: Descárgalo desde [nodejs.org](https://nodejs.org/)
-**Git**: Descárgalo desde [git-scm.com](https://git-scm.com/)
+**Node.js**: Descárgalo desde [nodejs.org](https://nodejs.org/)    
+**Git**: Descárgalo desde [git-scm.com](https://git-scm.com/)  
 Verifica que la instalación haya sido exitosa ejecutando los siguientes comandos en tu terminal:
 
 ```bash
