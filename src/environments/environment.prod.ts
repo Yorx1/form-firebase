@@ -1,5 +1,5 @@
 export const environment = [{
-    prodution:true,
+    production:true,
     firebase: {
         projectId: "session-firebase-auth",
         appId: "1:408925918908:web:db0a6cacf7fc088d2722b9",
