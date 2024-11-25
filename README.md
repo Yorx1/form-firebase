@@ -12,7 +12,7 @@ git -v
 
 # Angular CLI
 
-La Angular CLI es necesaria para crear y gestionar proyectos Angular. Instálala globalmente con:
+La Angular CLI es necesaria para crear y gestionar proyectos Angular, instálala globalmente con:
 
 ```bash
 npm install -g @angular/cli
@@ -31,19 +31,19 @@ Abre git bash y clona este repositorio en tu máquina local:
 git clone https://github.com/Yorx1/test-disorders.git
 ```
 
-Acceder al Directorio Accede al directorio del proyecto:
+Accede al directorio del proyecto:
 
 ```bash
 cd test-disorders
 ```
-Instalar Dependencias Ejecuta el siguiente comando para instalar las dependencias necesarias:
+Ejecuta el siguiente comando para instalar las dependencias necesarias:
 
 ```bash
 npm install
 ```
 # test-disorders
 
-Este proyecto se generó con [Angular CLI](https://github.com/angular/angular-cli) versión 17.3.3.
+Este proyecto se generó con [Angular CLI](https://github.com/angular/angular-cli) versión 18.2.11.
 
 ## Servidor de desarrollo
 
