@@ -4,10 +4,10 @@ Descarga e instala Node.js desde nodejs.org
 Descarga e instala git git-scm.com
 Verifica la instalación ejecutando:
 
- ```bash
-   node -v
-   npm -v
-   git -v
+```bash
+node -v
+npm -v
+git -v
 ```
 
 # Angular CLI
