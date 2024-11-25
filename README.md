@@ -1,8 +1,8 @@
 # Requisitos Previos
 
-Descarga e instala Node.js desde nodejs.org
-Descarga e instala git git-scm.com
-Verifica la instalación ejecutando:
+**Node.js**: Descárgalo desde [nodejs.org](https://nodejs.org/)
+**Git**: Descárgalo desde [git-scm.com](https://git-scm.com/)
+Verifica que la instalación haya sido exitosa ejecutando los siguientes comandos en tu terminal:
 
 ```bash
 node -v
