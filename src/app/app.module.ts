@@ -6,7 +6,7 @@ import { provideRouter, RouterModule, withViewTransitions } from '@angular/route
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { environment } from '../environments/environment.development';
+import { environment } from '../environments/environment';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -29,7 +29,7 @@ import { routes } from './auth/auth-routing.module';
     SharedModule,
   ],
   providers: [
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment[0].firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideHttpClient(),

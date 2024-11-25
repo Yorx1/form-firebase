@@ -4,13 +4,14 @@ import { arrayUnion, deleteDoc, doc, docData, Firestore, updateDoc } from '@angu
 import { Observable } from 'rxjs';
 import { User } from '../../interfaces/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 
 export type UserModified = {
-    name:string
-    lastName:string
-    birthDate:string
-    description:string
+    name: string
+    lastName: string
+    birthDate: string
+    description: string
 }
 
 
@@ -22,6 +23,21 @@ export class DashboardService {
         private auth: Auth,
         private http: HttpClient
     ) { }
+
+    private interpretation: { [key: number]: string } = {
+        0: 'trastorno Depresivo Mayor',
+        1: 'trastorno del espectro autista',
+        2: 'transtorno de soledad',
+        3: 'transtorno de bipolaridad',
+        4: 'transtorno de ansiedad',
+        5: 'trastorno de estrés postraumático',
+        6: 'trastorno del sueño',
+        7: 'trastorno de depresión psicótica',
+        8: 'trastorno alimenticio',
+        9: 'trastorno por déficit de atención e hiperactividad',
+        10: 'trastorno obsesivo-compulsivo',
+        11: 'trastorno depresivo persistente'
+      }
 
 
     private interpretationCount: { [key: string]: number } = {
@@ -40,12 +56,16 @@ export class DashboardService {
     }
 
 
-    get interpretationData(): {} {
+    get interpretationDataCount(): {} {
         return this.interpretationCount
     }
 
+    get interpretationData(){
+        return this.interpretation
+    }
 
-    private apiUrl: string = 'https://oscarcz-tesis-2.hf.space/predict/'
+
+    private apiUrl: string = environment[0].huggingFace.apikey
 
 
     async addInRecord(result: string) {
@@ -91,8 +111,8 @@ export class DashboardService {
         })
     }
 
-    deleteUser(){
-        const userRef = doc(this.firestore,'users',this.auth.currentUser!.uid)
+    deleteUser() {
+        const userRef = doc(this.firestore, 'users', this.auth.currentUser!.uid)
         return deleteDoc(userRef)
     }
 

@@ -17,24 +17,7 @@ type Data = {
 })
 export class FormComponent implements OnInit {
 
-  @Input()
   public messages: string[] = []
-
-  private interpretation: { [key: number]: string } = {
-    0: 'trastorno Depresivo Mayor',
-    1: 'trastorno del espectro autista',
-    2: 'transtorno de soledad',
-    3: 'transtorno de bipolaridad',
-    4: 'transtorno de ansiedad',
-    5: 'trastorno de estrés postraumático',
-    6: 'trastorno del sueño',
-    7: 'trastorno de depresión psicótica',
-    8: 'trastorno alimenticio',
-    9: 'trastorno por déficit de atención e hiperactividad',
-    10: 'trastorno obsesivo-compulsivo',
-    11: 'trastorno depresivo persistente'
-  }
-
 
   public questions = [
     { id: 'feeling_nervous', label: '¿Se ha sentido por momentos nervioso o inquieto en los últimos días?' },
@@ -122,7 +105,7 @@ export class FormComponent implements OnInit {
         (data: Data) => {
 
           data.prediction.map((value, index) => {
-            value === 1 ? this.messages.push(this.interpretation[index]) : ''
+            value === 1 ? this.messages.push(this.dashboardService.interpretationData[index]) : ''
           })
 
           const limitedMessages = this.messages.slice(0, 2);

@@ -1,52 +1,11 @@
-<shared-particles></shared-particles>
-<!-- <section style="background-color: #09f;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <form (submit)="onSubmit()">
-          <div class="card shadow-2-strong bg-dark text-white" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-
-              <h3 class="mb-5">Iniciar Sesión</h3>
-
-              <div data-mdb-input-init class="form-outline mb-4">
-                <input [(ngModel)]="email" name="email" type="email" id="typeEmailX-2" class="form-control form-control-lg" />
-                <label class="form-label" for="typeEmailX-2">Email</label>
-              </div>
-
-              <div data-mdb-input-init class="form-outline mb-4">
-                <input [(ngModel)]="contrasenia" name="contrasenia" type="password" id="typePasswordX-2" class="form-control form-control-lg" />
-                <label class="form-label" for="typePasswordX-2">Contraseña</label>
-              </div>
-
-             
-              <div class="form-check d-flex justify-content-start mb-4">
-                <input class="form-check-input mx-2" type="checkbox" value="" id="form1Example3" />
-                <label class="form-check-label" for="form1Example3">Recordar Contraseña</label>
-              </div>
-
-              <input class="btn btn-primary" type="submit" value="Ingresar">
-
-              <hr class="my-4">
-
-              
-              
-
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section> -->
 <form (ngSubmit)="onSubmit()"  [formGroup]="form">
   <section>
     <div class="login">
       <h1>Login</h1>
 
 
-      <input name="email" type="email" class="form-control mb-1" placeholder="Email Address" formControlName="email">
-      <input name="password" type="password" class="form-control mb-1" placeholder="Password" formControlName="password">
+      <input name="email" type="email" class="form-control mb-1" placeholder="Correo Electrónico" formControlName="email">
+      <input name="password" type="password" class="form-control mb-1" placeholder="Contraseña" formControlName="password">
 
 
       <button class="btn btn-lg btn-block btn-primary mb-1" type="submit">

@@ -1,9 +1,7 @@
-import { docData } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../../services/dashboard.service';
 import { User } from '../../../interfaces/user';
-import { map, tap } from 'rxjs';
+
 
 @Component({
   selector: 'dashboard-profile',

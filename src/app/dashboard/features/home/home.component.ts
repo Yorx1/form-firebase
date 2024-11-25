@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const dataInterpretation: { [key: string]: number } = this.dashboardService.interpretationData
+    const dataInterpretation: { [key: string]: number } = this.dashboardService.interpretationDataCount
     const dataDisordersCount: DataDisorders[] = []
     this.dashboardService.getRecords().subscribe(
       (data) => {
