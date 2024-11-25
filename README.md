@@ -43,7 +43,7 @@ npm install
 ```
 # test-disorders
 
-Este proyecto se generó con [Angular CLI](https://github.com/angular/angular-cli) versión 18.2.11.
+Este proyecto se generó con [Angular CLI](https://github.com/angular/angular-cli) versión 18.2.12.
 
 ## Servidor de desarrollo
 
