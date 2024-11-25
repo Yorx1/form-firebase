@@ -4,32 +4,43 @@ Descarga e instala Node.js desde nodejs.org
 Descarga e instala git git-scm.com
 Verifica la instalación ejecutando:
 
-node -v
-npm -v
-git -v
+ ```bash
+   node -v
+   npm -v
+   git -v
+```
 
 # Angular CLI
 
 La Angular CLI es necesaria para crear y gestionar proyectos Angular. Instálala globalmente con:
 
+```bash
 npm install -g @angular/cli
-
+```
 Verifica la instalación ejecutando:
+
+```bash
+ng version
+```
 
 # Instalar el Proyecto
 
 Abre git bash y clona este repositorio en tu máquina local:
 
+```bash
 git clone https://github.com/Yorx1/test-disorders.git
+```
 
 Acceder al Directorio Accede al directorio del proyecto:
 
+```bash
 cd test-disorders
-
+```
 Instalar Dependencias Ejecuta el siguiente comando para instalar las dependencias necesarias:
 
+```bash
 npm install
-
+```
 # test-disorders
 
 Este proyecto se generó con [Angular CLI](https://github.com/angular/angular-cli) versión 17.3.3.
